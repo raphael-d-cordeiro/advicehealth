@@ -10,11 +10,11 @@ from supertokens_python import get_all_cors_headers
 from supertokens_python.recipe import emailpassword, session
 from supertokens_python.framework.flask import Middleware
 
-from src.routes.v1 import (
+from src.main.routes.v1 import (
     car_owner_routes_bp, car_routes_bp, sales_routes_bp
 )
 
-from src.models import create_database
+from src.core.models import create_database
 from src.core import DBConnection
 
 load_dotenv()

@@ -8,7 +8,7 @@ from sqlalchemy import (
     Enum,
 )
 
-from src.schemas import CarColor, CarModel, CarOwner
+from src.domain.schemas import CarColor, CarModel, CarOwner
 
 from models.base import Base
 

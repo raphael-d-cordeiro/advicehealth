@@ -6,7 +6,7 @@ from sqlalchemy import (
     String,
 )
 
-from src.schemas import Car
+from src.domain.schemas import Car
 
 
 from models.base import Base

@@ -14,10 +14,11 @@ from src.routes.v1 import (
     car_owner_routes_bp, car_routes_bp, sales_routes_bp
 )
 
-from src.infra.db.sqlalchemy import create_database, DBConnectionHandler
+from src.models import create_database
+from src.core import DBConnection
 
 load_dotenv()
-create_database(DBConnectionHandler().get_engine())  # Development purpose
+create_database(DBConnection().get_engine())
 
 
 init(

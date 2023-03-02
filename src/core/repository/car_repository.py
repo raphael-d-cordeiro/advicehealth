@@ -11,7 +11,7 @@ from src.domain.usecases import AddCarModel
 
 from src.domain.schemas import Car
 
-from src.core import DBConnection
+from src.core.database import DBConnection
 from src.core.models import Car as CarEntity
 
 

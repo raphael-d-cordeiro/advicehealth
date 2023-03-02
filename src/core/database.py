@@ -11,8 +11,7 @@ load_dotenv()
 
 class DBConnection:
 
-    def __init__(self, user: str, pwd: str, server_name: str,
-                 database: str, port: str = '5432'):
+    def __init__(self, port: str = '5432'):
 
         self._db_url: URL = URL.create(
             drivername='postgresql+psycopg2',
@@ -22,6 +21,7 @@ class DBConnection:
             database=os.environ.get("DATABASE_NAME"),
             port=port,
         )
+        print(self._db_url)
         self.session = None
 
     def get_engine(self):

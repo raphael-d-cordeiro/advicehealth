@@ -10,7 +10,7 @@ from sqlalchemy import (
 
 from src.domain.schemas import CarColor, CarModel, CarOwner
 
-from models.base import Base
+from src.core.models.base import Base
 
 
 class Car(Base):

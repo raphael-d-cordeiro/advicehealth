@@ -1,0 +1,50 @@
+version: '3'
+services:
+  api:
+    hostname: nork-town-cars
+    build:
+      context: ./
+      dockerfile: dockerfile
+    depends_on:
+      - postgres
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/code
+    networks:
+      - nork-town-cars
+    restart: unless-stopped
+    ports:
+      - 5000:5000
+    environment:
+      - DATABASE_USER=postgres
+      - DATABASE_PWD=postgres
+      - DATABASE_HOST=postgres
+      - DATABASE_NAME=nork_town
+      - SUPERTOKENS_CONNECTION_URI=https://dev-64a516e1b8ac11ed93c9b95619e3aa06-us-east-1.aws.supertokens.io:3567
+      - SUPERTOKENS_API_KEY=w=PuqUAO6YO1e-M13KjwSg1jyCj3xo
+
+  # supertokens:
+  #   image: registry.supertokens.io/supertokens/supertokens-postgresql
+  #   restart: always
+  #   hostname: supertokens
+  #   ports:
+  #     - '3567:3567'
+  #   networks:
+  #     - nork-town-cars
+
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    hostname: postgres
+    environment:
+      - POSTGRES_DB=nork_town
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    networks:
+      - nork-town-cars
+
+networks:
+  nork-town-cars:
+    driver: bridge

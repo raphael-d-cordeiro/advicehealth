@@ -2,8 +2,6 @@ from typing import List, Optional
 
 from sqlalchemy import func
 
-# from sqlalchemy.orm.exc import NoResultFound
-
 from src.application.interfaces.repository import (
     AddCarOwnerRepositoryInterface,
     ListCarOwnersRepositoryInterface,
@@ -11,11 +9,11 @@ from src.application.interfaces.repository import (
 
 from src.domain.usecases import AddCarOwnerModel
 
-from src.domain.models import CarOwner
+from src.domain.schemas import CarOwner
 
-from src.infra.db.sqlalchemy.config import DBConnectionHandler
-from src.infra.db.sqlalchemy.entities import CarOwner as CarOwnerEntity
-from src.infra.db.sqlalchemy.entities import Car as CarEntity
+from src.core.database import DBConnection
+from src.core.models import CarOwner as CarOwnerEntity
+from src.core.models import Car as CarEntity
 
 
 class CarOwnerRepository(
@@ -31,7 +29,7 @@ class CarOwnerRepository(
         :return - tuple with new pet inserted
         """
 
-        with DBConnectionHandler() as db_connection:
+        with DBConnection() as db_connection:
             try:
                 new_car_owner = CarOwnerEntity(name=car_owner.name)
                 db_connection.session.add(new_car_owner)
@@ -41,7 +39,7 @@ class CarOwnerRepository(
                     id=new_car_owner.id,
                     name=new_car_owner.name,
                 )
-            except:
+            except Exception:
                 db_connection.session.rollback()
                 raise
             finally:
@@ -61,18 +59,11 @@ class CarOwnerRepository(
         :return - list of car owners
         """
 
-        with DBConnectionHandler() as db_connection:
+        with DBConnection() as db_connection:
             try:
                 query = db_connection.session.query(CarOwnerEntity)
 
-                # TODO: IMPORTANT LOGIC REFAC
-                # as the project requirements is to filter by car owner without cars,
-                # the choise made was to make a filter by number of cars but i got trouble by making with `having`
-                # sqlalchemy statement idkw and i ended up creating just a filter for car owner that doesnt have car that works.
-                # the current project purpose doesnt require this refactor as it works as it need but
-                # it will be better with propely logic refactor
                 if not has_cars:
-                    # pylint: disable=singleton-comparison
                     query = query.filter(CarOwnerEntity.cars == None)
 
                 list_ = query.offset(index).limit(limit).all()
@@ -84,7 +75,7 @@ class CarOwnerRepository(
                     )
                     for car_owner in list_
                 ]
-            except:
+            except Exception:
                 db_connection.session.rollback()
                 raise
             finally:

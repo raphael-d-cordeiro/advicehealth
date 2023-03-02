@@ -15,7 +15,7 @@ from src.main.routes.v1 import (
 )
 
 from src.core.models import create_database
-from src.core import DBConnection
+from src.core.database import DBConnection
 
 load_dotenv()
 create_database(DBConnection().get_engine())
@@ -30,10 +30,8 @@ init(
         website_base_path="/auth",
     ),
     supertokens_config=SupertokensConfig(
-        connection_uri=os.environ.get(
-            "SUPERTOKENS_CONNECTION_URI", "http://localhost:3567"
-        ),
-        # api_key="key"
+        connection_uri=os.environ.get('SUPERTOKENS_CONNECTION_URI'),
+        api_key=os.environ.get('SUPERTOKENS_API_KEY')
     ),
     framework="flask",
     # initializes session features

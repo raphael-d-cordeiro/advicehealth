@@ -20,6 +20,16 @@ services:
       - DATABASE_PWD=postgres
       - DATABASE_HOST=postgres
       - DATABASE_NAME=nork_town
+      - SUPERTOKENS_CONNECTION_URI=http://supertokens:3567
+
+  supertokens:
+    image: registry.supertokens.io/supertokens/supertokens-postgresql
+    restart: always
+    hostname: supertokens
+    ports:
+      - '3567:3567'
+    networks:
+      - nork-town-cars
 
   postgres:
     image: postgres:14.1-alpine

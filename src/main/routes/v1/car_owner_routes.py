@@ -1,6 +1,6 @@
-from supertokens_python.recipe.session.framework.flask import verify_session
-
 from flask import Blueprint, request
+from flask_httpauth import HTTPBasicAuth
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from src.main.composer import (
     add_car_owner_composer,
@@ -13,9 +13,23 @@ car_owner_routes_bp = Blueprint(
     "car_owner_routes", __name__, url_prefix="/v1/carowners"
 )
 
+auth = HTTPBasicAuth()
+
+users = {
+    "john": generate_password_hash("hello"),
+    "susan": generate_password_hash("bye")
+}
+
+
+@auth.verify_password
+def verify_password(username, password):
+    if username in users and \
+            check_password_hash(users.get(username), password):
+        return username
+
 
 @car_owner_routes_bp.route("/", methods=["POST"])
-@verify_session()
+@auth.login_required
 def register_car_owner():
     """register car owner route"""
 
@@ -23,7 +37,7 @@ def register_car_owner():
 
 
 @car_owner_routes_bp.route("/", methods=["GET"])
-@verify_session()
+@auth.login_required
 def list_car_owners():
     """List car owners route"""
 

@@ -20,17 +20,6 @@ services:
       - DATABASE_PWD=postgres
       - DATABASE_HOST=postgres
       - DATABASE_NAME=nork_town
-      - SUPERTOKENS_CONNECTION_URI=https://dev-64a516e1b8ac11ed93c9b95619e3aa06-us-east-1.aws.supertokens.io:3567
-      - SUPERTOKENS_API_KEY=w=PuqUAO6YO1e-M13KjwSg1jyCj3xo
-
-  # supertokens:
-  #   image: registry.supertokens.io/supertokens/supertokens-postgresql
-  #   restart: always
-  #   hostname: supertokens
-  #   ports:
-  #     - '3567:3567'
-  #   networks:
-  #     - nork-town-cars
 
   postgres:
     image: postgres:14.1-alpine

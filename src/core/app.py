@@ -36,10 +36,7 @@ init(
     framework="flask",
     # initializes session features
     recipe_list=[
-        session.init(
-            jwt=session.JWTConfig(enable=True,
-                                  issuer='https://0d53-2405-201-e-d8bd-587b-3674-124d-4208.ngrok.io/auth')
-        ),
+        session.init(),
         emailpassword.init()
     ],
 )

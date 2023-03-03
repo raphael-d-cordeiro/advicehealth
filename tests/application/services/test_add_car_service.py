@@ -7,9 +7,9 @@ from src.domain.usecases import AddCarModel, AddCarOwnerModel
 
 from src.application.services import AddCarService
 
-from tests.infra.db.sqlalchemy.repository import CarOwnerRepositorySpy
+from tests.core.repository import CarOwnerRepositorySpy
 
-from tests.infra.db.sqlalchemy.repository import CarRepositorySpy
+from tests.core.repository import CarRepositorySpy
 
 faker = Faker()
 

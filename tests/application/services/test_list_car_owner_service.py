@@ -2,7 +2,7 @@ from faker import Faker
 
 from src.application.services import ListCarOwnerService
 
-from tests.infra.db.sqlalchemy.repository import CarOwnerRepositorySpy
+from tests.core.repository import CarOwnerRepositorySpy
 
 
 faker = Faker()

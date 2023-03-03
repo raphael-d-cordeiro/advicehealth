@@ -10,7 +10,7 @@ from src.domain.usecases import AddCarOwnerModel
 from src.presentation.helpers import HttpRequest
 from src.presentation.controllers import AddCarController
 
-from tests.infra.db.sqlalchemy.repository import CarOwnerRepositorySpy
+from tests.core.repository import CarOwnerRepositorySpy
 
 faker = Faker()
 

@@ -2,8 +2,8 @@ import random
 
 from faker import Faker
 
-from tests.infra.db.sqlalchemy.repository import CarOwnerRepositorySpy
-from tests.infra.db.sqlalchemy.repository import CarRepositorySpy
+from tests.core.repository import CarOwnerRepositorySpy
+from tests.core.repository import CarRepositorySpy
 
 from src.domain.usecases import AddCarModel, AddCarOwnerModel
 from src.domain.schemas import CarColor, CarModel

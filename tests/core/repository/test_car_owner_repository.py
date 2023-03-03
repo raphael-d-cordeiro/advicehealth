@@ -1,5 +1,5 @@
 from faker import Faker
-from tests.infra.db.sqlalchemy.repository import CarOwnerRepositorySpy
+from tests.core.repository import CarOwnerRepositorySpy
 from src.domain.usecases import AddCarOwnerModel
 
 faker = Faker()

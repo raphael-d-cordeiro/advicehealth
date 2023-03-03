@@ -4,7 +4,7 @@ from src.domain.usecases import AddCarOwnerModel
 
 from src.application.services import AddCarOwnerService
 
-from tests.infra.db.sqlalchemy.repository import CarOwnerRepositorySpy
+from tests.core.repository import CarOwnerRepositorySpy
 
 
 faker = Faker()

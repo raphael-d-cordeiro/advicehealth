@@ -25,7 +25,7 @@ init(
     app_info=InputAppInfo(
         app_name="advicehealtrh",
         api_domain="http://localhost:3567",
-        website_domain="http://localhost:5000",
+        website_domain="http://localhost:8000",
         api_base_path="/auth",
         website_base_path="/auth",
     ),
@@ -35,7 +35,13 @@ init(
     ),
     framework="flask",
     # initializes session features
-    recipe_list=[session.init(), emailpassword.init()],
+    recipe_list=[
+        session.init(
+            jwt=session.JWTConfig(enable=True,
+                                  issuer='https://0d53-2405-201-e-d8bd-587b-3674-124d-4208.ngrok.io/auth')
+        ),
+        emailpassword.init()
+    ],
 )
 
 app = Flask(__name__)
@@ -43,7 +49,7 @@ Middleware(app)
 
 CORS(
     app=app,
-    origins=["http://localhost:5000"],
+    origins=["http://localhost:8000"],
     supports_credentials=True,
     allow_headers=["Content-Type"] + get_all_cors_headers(),
 )

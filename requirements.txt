@@ -1,5 +1,5 @@
 Flask
-supertokens-python
+supertokens-python==0.11.4
 Flask-Cors
 python-dotenv
 SQLAlchemy==1.4.41

@@ -59,7 +59,7 @@ app.register_blueprint(sales_routes_bp)
 @app.route("/hello-world")
 def hello_work():
     """Hello World route"""
-    return "Hello World! The API is Running! and docker too"
+    return "Hello World! The API is Running!"
 
 
 # This is required since if this is not there, then OPTIONS requests for
